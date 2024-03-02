@@ -1,0 +1,13 @@
+package com.proyectoEnigma;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ProyectoEnigmaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProyectoEnigmaApplication.class, args);
+	}
+
+}
