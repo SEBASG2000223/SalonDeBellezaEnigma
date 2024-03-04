@@ -7,3 +7,10 @@ create user 'usuario_1'@'%' identified by 'cliente_1';
 grant all privileges on SalonEnigma.* to 'usuario_1'@'%';
 
 flush privileges;
+
+CREATE TABLE Accesorios (
+    id_accesorios INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    ruta_Imagen VARCHAR(255),
+    activo BOOLEAN
+);
