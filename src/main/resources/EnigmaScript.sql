@@ -14,3 +14,10 @@ CREATE TABLE Accesorios (
     ruta_Imagen VARCHAR(255),
     activo BOOLEAN
 );
+
+CREATE TABLE Servicios (
+    id_servicios INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    ruta_imagen VARCHAR(255),
+    activo BOOLEAN
+);
