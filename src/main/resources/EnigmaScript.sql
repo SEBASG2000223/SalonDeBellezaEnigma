@@ -21,3 +21,17 @@ CREATE TABLE Servicios (
     ruta_imagen VARCHAR(255),
     activo BOOLEAN
 );
+
+CREATE TABLE Servicios (
+    id_servicios INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    ruta_imagen VARCHAR(255),
+    activo BOOLEAN
+);
+
+CREATE TABLE Conozcanos (
+    id_conozcanos INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(255),
+    ruta_imagen VARCHAR(255),
+    activo BOOLEAN
+);
