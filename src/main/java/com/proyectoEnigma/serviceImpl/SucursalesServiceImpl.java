@@ -15,7 +15,7 @@ public class SucursalesServiceImpl
         implements SucursalesService {
 
     @Autowired
-    private ConozcanosDao sucursalesDao;
+    private SucursalesDao sucursalesDao;
 
     @Override
     @Transactional(readOnly = true)//que el metodo accede a una base de datos y que la base es de solo lectura

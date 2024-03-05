@@ -24,7 +24,7 @@ public class FirebaseStorageServiceImpl implements FirebaseStorageService {
     @Override
     public String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id) {
         try {
-            // El nombre original del archivo local del cliene
+            // El nombre original del archivo local del cliente
             String extension = archivoLocalCliente.getOriginalFilename();
 
             // Se genera el nombre según el código del articulo. 

@@ -11,16 +11,16 @@ public interface FirebaseStorageService {
             Long id);
 
     //El BuketName es el <id_del_proyecto> + ".appspot.com"
-    final String BucketName = "techshopk-de30c.appspot.com";
+    final String BucketName = "enigmasalon-4beba.appspot.com";
 
     //Esta es la ruta básica de este proyecto Techshop
-    final String rutaSuperiorStorage = "techshop";
+    final String rutaSuperiorStorage = "Salon";
 
     //Ubicación donde se encuentra el archivo de configuración Json
     final String rutaJsonFile = "firebase";
     
     //El nombre del archivo Json
-    final String archivoJsonFile = "techshopk-de30c-firebase-adminsdk-xuk6n-4630c6e97a.json";
+    final String archivoJsonFile = "enigmasalon-4beba-firebase-adminsdk-u4vsv-d2e206f9f4.json";
 }
 
 
