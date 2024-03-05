@@ -2,78 +2,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="~{layout/plantilla :: head}">
-        <title>EnigmaSalon</title>
-    </head>
-    <body>
-        <section th:fragment="card" class="d-flex justify-content-center flex-wrap mt-5">
-            <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+<head th:replace="~{layout/plantilla :: head}">
+    <title>EnigmaSalon</title>
+</head>
+<body>
+<section th:fragment="card" class="mt-5">
+    <!-- Contenedor para centrar las tarjetas horizontalmente -->
+    <div class="container d-flex justify-content-center">
+        <!-- Sección para las tarjetas -->
+        <div class="row">
+            <!-- Tarjeta 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Fsilla.jpg?alt=media&token=9ceb523a-e70c-44bb-bbd9-bf84558092b9" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 1</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <!-- Tarjeta 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Fsecadora.jpg?alt=media&token=c9965501-8860-4958-9940-e803ddf3309b" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 2</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <!-- Tarjeta 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FTIJERAS.jpg?alt=media&token=3bc7fb9c-de3a-4632-b832-6335302d73f5" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 3</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <!-- Tarjeta 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Fplancha%20cabello.png?alt=media&token=2b5d2089-4fbd-4af1-b2c8-0941b9b34ca0" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 4</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <!-- Tarjeta 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 5</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
+            <!-- Tarjeta 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title 6</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
             </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 7</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-            </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title 8</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-            </div>
-        </section>
-
-
-    </body>
+        </div>
+    </div>
+</section>
+</body>
 </html>
