@@ -13,20 +13,20 @@
         <!-- Filas y columnas -->
         <div class="row justify-content-center">
             <!-- Servicios -->
-            <div class="col-md-4" th:each="s : ${servicios}">
+            <div class="col-md-3 mb-4" th:each="s : ${servicios}">
                 <div class="card">
-                    <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
-                    <div class="card-body">
-                        <h5 th:class="${s.nombreServicio}" th:text="${s.nombreServicio}"></h5>
+                    <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3" th:text="${s.nombreServicio}"></h5>
                         <p class="card-text" th:text="${s.descripcion}"></p>
                         <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idServicios}">
-                            Más información
+                        <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idServicios}">
+                            Comprar
                         </button>
                     </div>
                 </div>
                 <!-- Modal asociado a cada servicio -->
-                <div class="modal" th:id="'modal' + ${s.idServicios}" tabindex="-1">
+                <div class="modal" th:id="'modal' + ${s.idServicios}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

@@ -17,11 +17,11 @@
                 <div class="card">
                     <!-- Imagen de la sucursal -->
                     <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <!-- Nombre de la sucursal -->
                         <h5 th:text="${s.nombreSucursal}" class="card-title"></h5>
                         <!-- Dirección de la sucursal -->
-                        <p th:text="${s.descripcion}" class="card-text"></p>
+                        <p th:text="${s.descripcion}" class="card-title mb-3"></p>
                         <!-- Botón para más información -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idSucursales}">
                             Más información
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <!-- Modal asociado a cada sucursal -->
-                <div class="modal" th:id="'modal' + ${s.idSucursales}" tabindex="-1">
+                <div class="modal" th:id="'modal' + ${s.idSucursales}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head th:replace="~{layout/plantilla :: head}">
     <title>EnigmaSalon</title>
     <!-- Agregar Bootstrap CSS para estilos -->
-
-  
 </head>
 <body>
-  
+
 <section th:fragment="card" id="accesorios" class="pt-md-5">
     <!-- Sección para las tarjetas -->
     <div class="container">
         <!-- Filas y columnas -->
         <div class="row justify-content-center">
             <!-- Tarjetas -->
-            <div class="col-md-4" th:each="a : ${accesorios}">
+            <div class="col-md-3 mb-4" th:each="a : ${accesorios}">
                 <div class="card">
-                    <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
-                    <div class="card-body">
-                        <h5 th:class="${a.nombreAccesorio}" th:text="${a.nombreAccesorio}"></h5>
+                    <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="...">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3" th:text="${a.nombreAccesorio}"></h5>
                         <p class="card-text" th:text="${a.descripcion}"></p>
                         <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idAccesorios}">
-                            Más información
+                        <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idAccesorios}">
+                            Comprar
                         </button>
                     </div>
                 </div>
                 <!-- Modal asociado a cada tarjeta -->
-                <div class="modal" th:id="'modal' + ${a.idAccesorios}" tabindex="-1">
+                <div class="modal" th:id="'modal' + ${a.idAccesorios}" >
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
