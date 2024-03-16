@@ -15,6 +15,7 @@ public class Accesorios implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_accesorios")
     private Long idAccesorios;
+    private String nombreAccesorio;
     private String descripcion;
     private String rutaImagen;
     private boolean activo;

@@ -6,101 +6,50 @@
         <title>EnigmaSalon</title>
     </head>
     <body>
-        <section th:fragment="card" class="mt-5">
-            <!-- Contenedor para centrar las tarjetas horizontalmente -->
-            <div class="container d-flex justify-content-center">
-                <!-- Sección para las tarjetas -->
-                <div class="row">
-                    <div class="w-100"></div> <!-- Divisor de fila -->
-
-                    <div class="w-100 d-flex justify-content-center">
-
-                        <h2> Servicios de Cabello </h2>
-                        
+  
+<section th:fragment="card" id="servicios" class="pt-md-5">
+    <!-- Sección para los servicios -->
+    <div class="container">
+        <!-- Filas y columnas -->
+        <div class="row justify-content-center">
+            <!-- Servicios -->
+            <div class="col-md-4" th:each="s : ${servicios}">
+                <div class="card">
+                    <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
+                    <div class="card-body">
+                        <h5 th:class="${s.nombreServicio}" th:text="${s.nombreServicio}"></h5>
+                        <p class="card-text" th:text="${s.descripcion}"></p>
+                        <!-- Botón para abrir el modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idServicios}">
+                            Más información
+                        </button>
                     </div>
-                    <!-- Tarjeta 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Fcorte.png?alt=media&token=460421ae-fe22-4f19-bf10-81a7391ec992"
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Corte</h5>
-                                    <p class="card-text">dar forma, recortar y estilizar el cabello</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 2 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Fqueratina.png?alt=media&token=d53e8e53-98ce-441c-aaa1-8d2e27ec9dce" 
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Queratina</h5>
-                                    <p class="card-text">Tratamiento para el cabello que ayuda a suavizar, alisar y reparar el cabello dañado</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 3 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2Ftinte.png?alt=media&token=9ea294ac-79db-44bf-b3ba-bbafaf41c43d" 
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Tinte</h5>
-                                    <p class="card-text">Proceso de aplicar color artificial al cabello para cambiar su tono</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="w-100"></div> <!-- Divisor de fila -->
-
-                    <div class="w-100 d-flex justify-content-center">
-
-                        <h2> Servicios de Uñas </h2>
-                        <br>
-                    </div>
-                    <!-- Tarjeta 4 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FManicura.png?alt=media&token=57030465-3651-4b1d-97c8-91e81e1f1f94" 
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Manicura</h5>
-                                    <p class="card-text">Servicio de cuidado de las uñas de las manos, que incluye limado, recorte, pulido y aplicación de esmalte</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 5 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FPedicura.png?alt=media&token=e8e3deba-b23c-4206-8d89-4c9cbee0de1f" 
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Pedicura</h5>
-                                    <p class="card-text">Servicio de cuidado de las uñas de los pies, que incluye limado, recorte, pulido y aplicación de esmalte</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- Tarjeta 6 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FGelX.png?alt=media&token=cc33b05e-0f3f-4bdf-a5f9-d826d7a876b4" 
-                                 class="card-img-top" alt="..."/>
-                                <div class="card-body">
-                                    <h5 class="card-title">Gel X</h5>
-                                    <p class="card-text">Método de aplicación de uñas de gel que utiliza puntas preformadas y gel específico para una apariencia y durabilidad mejoradas</p>
-                                    <a href="#" class="btn btn-primary">Más información</a>
-                                </div>
+                </div>
+                <!-- Modal asociado a cada servicio -->
+                <div class="modal" th:id="'modal' + ${s.idServicios}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" th:text="${s.nombreServicio}"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Contenido del modal -->
+                                <p th:text="${s.descripcion}"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <!-- Agrega aquí cualquier otro botón o funcionalidad necesaria -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+<!-- Agregar Bootstrap JS al final del body para funcionalidad -->
+<!-- Agrega aquí el enlace al archivo JS de Bootstrap -->
 
-
-    </body>
+</body>
 </html>

@@ -15,6 +15,7 @@ public class Sucursales implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sucursales")
     private Long idSucursales;
+    private String nombreSucursal;
     private String descripcion;
     private String rutaImagen;
     private boolean activo;

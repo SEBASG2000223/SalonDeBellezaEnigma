@@ -6,38 +6,54 @@
         <title>EnigmaSalon</title>
     </head>
     <body>
-        <section th:fragment="card" class="d-flex justify-content-center flex-wrap mt-5">
-            <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FZapote.png?alt=media&token=ef96ad12-8a9a-469e-8bd8-4a8ebf64ef3d" class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Zapote</h5>
-                        <p class="card-text">500mts al norte de multiplaza del este</p>
-                        <a href="https://google.com/maps/place/Multiplaza+este/@9.9184428,-84.051201,17z/data=!4m10!1m2!2m1!1smultiplaza+del+este!3m6!1s0x8fa0e3bb76d55fe9:0x90e292b02f7f9c56!8m2!3d9.9184428!4d-84.0466949!15sChNtdWx0aXBsYXphIGRlbCBlc3RlIgOIAQFaFSITbXVsdGlwbGF6YSBkZWwgZXN0ZZIBEGNlbGxfcGhvbmVfc3RvcmXgAQA!16s%2Fg%2F11kr79l84x?entry=ttu" 
-                           class="btn btn-primary">Ubicacion en maps</a>
-                    </div>
-            </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FDesamparados.png?alt=media&token=2d4d47b9-a824-43fb-bbea-25a89f1172f1" class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Desamparados</h5>
-                        <p class="card-text">25mts sur y 100 mts este de multicentro desamparados</p>
-                        <a href="https://www.google.com/maps/place/Centro+Comercial+Multicentro/@9.8993909,-84.0710095,17z/data=!3m1!4b1!4m6!3m5!1s0x8fa0e35ba0813a03:0xab75404f527a966a!8m2!3d9.8993909!4d-84.0684346!16s%2Fg%2F11gj52cw61?entry=ttu" 
-                           class="btn btn-primary">Ubicacion en maps</a>
-                    </div>
-            </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FGuadalupe.png?alt=media&token=2acafb4e-26e3-4ef1-b628-b62687c9e139" class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Guadalupe</h5>
-                        <p class="card-text">200mts oeste del Centro comercial de guadalupe</p>
-                        <a href="https://www.google.com/search?q=centro+comercial+en+guadalupe&rlz=1C1VDKB_esCR1080CR1080&oq=centro+comercial+en+gua&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBggCEEUYOTIHCAMQABiABDIHCAQQLhiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDgyMjJqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8#rlimm=6485652304197525696" 
-                           class="btn btn-primary">Ubicacion en maps</a>
-                    </div>
-            </div>
-            
-        </section>
 
+<section th:fragment="card" id="sucursales" class="pt-md-5">
+    <!-- Sección para las sucursales -->
+    <div class="container">
+        <!-- Filas y columnas -->
+        <div class="row justify-content-center">
+            <!-- Sucursales -->
+            <div class="col-md-4" th:each="s : ${sucursales}">
+                <div class="card">
+                    <!-- Imagen de la sucursal -->
+                    <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
+                    <div class="card-body">
+                        <!-- Nombre de la sucursal -->
+                        <h5 th:text="${s.nombreSucursal}" class="card-title"></h5>
+                        <!-- Dirección de la sucursal -->
+                        <p th:text="${s.descripcion}" class="card-text"></p>
+                        <!-- Botón para más información -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idSucursales}">
+                            Más información
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal asociado a cada sucursal -->
+                <div class="modal" th:id="'modal' + ${s.idSucursales}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- Título del modal -->
+                                <h5 class="modal-title" th:text="${s.nombreSucursal}"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Contenido del modal (más información sobre la sucursal) -->
+                                <p th:text="${s.descripcion}"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <!-- Otros botones o funcionalidades, si es necesario -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Agregar Bootstrap JS al final del body para funcionalidad -->
+<!-- Agrega aquí el enlace al archivo JS de Bootstrap -->
 
-    </body>
+</body>
 </html>
