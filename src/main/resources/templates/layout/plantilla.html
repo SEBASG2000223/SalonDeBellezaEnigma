@@ -43,21 +43,47 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
+                        <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')">
+                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link active text-black" aria-current="page" th:href="@{/accesorios/listado}"
                                    href="#"><b>[[#{plantilla.accesorios}]]</b></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link text-black" th:href="@{/servicios/listado}"><b>[[#{plantilla.servicios}]]</b></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link text-black" th:href="@{/sucursales/listado}"><b>[[#{plantilla.sucursales}]]</b></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                                 <a class="nav-link text-black" th:href="@{/conozcanos/listado}"><b>[[#{plantilla.conozcanos}]]</b></a>
                             </li>
 
+                        </ul>
+                        <ul class="navbar-nav" 
+                            sec:authorize='!isAuthenticated()'> 
+                            <li class="nav-item px-2">
+                                <a class="nav-link" th:href="@{/login}">
+                                    <i class="fas fa-sign-in-alt"></i> login
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav" 
+                            sec:authorize='isAuthenticated()'> 
+                            <li class="nav-item px-2 text-white">
+                                <img th:src="@{session.rutaImagen}"
+                                     alt="img"
+                                     height="40"
+                                     class="rounded-circle"/>
+                                <span sec:authentication="name">xxx</span>
+                            </li>
+                            <li class="nav-item my-auto">
+                                <form method="post"
+                                      th:action="@{/logout}">
+                                    <button class="btn btn-dark">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </button>                                    
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <a class="navbar-brand" th:href="@{/carrito/listado}" href="#">
