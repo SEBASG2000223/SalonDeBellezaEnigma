@@ -77,34 +77,33 @@ public class ProjectConfig implements WebMvcConfigurer {
             securityFilterChain(HttpSecurity http)
             throws Exception {
         http.authorizeHttpRequests((request) -> request
-                .requestMatchers("/", 
-                        "/index", 
-                        "/js/**", 
-                        "/webjars/**", 
-                        "/css/**", 
+                .requestMatchers("/",
+                        "/index",
+                        "/js/**",
+                        "/webjars/**",
+                        "/css/**",
                         "/carrito/**")
                 .permitAll()
                 .requestMatchers("/accesorios/listado",
                         "/servicios/listado",
+                        "/carrito/listado",
                         "/sucursales/listado",
-                        "/conozcanos/listado")
+                        "/conozcanos/listado"
+                )
                 .hasRole("VENDEDOR")
-                .requestMatchers("/accesorios/nuevo",
-                        "/accesorios/modificar/**",
-                        "/accesorios/eliminar/**",
-                        "/accesorios/guardar",
-                        "/servicios/nuevo",
-                        "/servicios/modificar/**",
-                        "/servicios/eliminar/**",
-                        "/servicios/guardar")
+                .requestMatchers("/carrito/listado",
+                        "/sucursales/listado",
+                        "/conozcanos/listado",
+                        "/accesorios/inventarioAccesorios",
+                        "/servicios/inventarioServicios")
                 .hasRole("ADMIN")
         )
                 .formLogin((form)
                         -> form
                         .loginPage("/login")
-                        .permitAll())
+                        .permitAll()
+                        .defaultSuccessUrl("/", true))
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
-
 }

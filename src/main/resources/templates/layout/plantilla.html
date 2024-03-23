@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head">
         <title>EnigmaSalon</title>
         <meta charset="UTF-8"/>
@@ -14,15 +12,15 @@
 
         <style>
             .nav-item .nav-link {
-                padding: 5px 11px; 
-                border-radius: 15px; 
+                padding: 5px 11px;
+                border-radius: 15px;
                 transition: background-color 0.3s, box-shadow 0.3s;
-                
+
             }
 
             .nav-item:hover .nav-link {
-                background-color: #B47770; 
-                box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); 
+                background-color: #B47770;
+                box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
             }
 
         </style>
@@ -43,47 +41,35 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav" sec:authorize="hasRole('VENDEDOR')">
-                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
                                 <a class="nav-link active text-black" aria-current="page" th:href="@{/accesorios/listado}"
                                    href="#"><b>[[#{plantilla.accesorios}]]</b></a>
                             </li>
-                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item">
                                 <a class="nav-link text-black" th:href="@{/servicios/listado}"><b>[[#{plantilla.servicios}]]</b></a>
                             </li>
-                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item">
                                 <a class="nav-link text-black" th:href="@{/sucursales/listado}"><b>[[#{plantilla.sucursales}]]</b></a>
                             </li>
-                            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                            <li class="nav-item">
                                 <a class="nav-link text-black" th:href="@{/conozcanos/listado}"><b>[[#{plantilla.conozcanos}]]</b></a>
                             </li>
-
-                        </ul>
-                        <ul class="navbar-nav" 
-                            sec:authorize='!isAuthenticated()'> 
-                            <li class="nav-item px-2">
-                                <a class="nav-link" th:href="@{/login}">
-                                    <i class="fas fa-sign-in-alt"></i> login
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" 
+                                   data-bs-toggle="dropdown" 
+                                   href="#" 
+                                   role="button" 
+                                   aria-expanded="false">
+                                    <b class="text-black">[[#{plantilla.administracion}]]</b>
                                 </a>
+                              <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" th:href="@{/accesorios/inventarioAccesorios}">[[#{plantilla.inventarioAccesorios}]]</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/servicios/inventarioServicios}">[[#{plantilla.inventarioServicios}]]</a></li>
+                                </ul>
                             </li>
-                        </ul>
-                        <ul class="navbar-nav" 
-                            sec:authorize='isAuthenticated()'> 
-                            <li class="nav-item px-2 text-white">
-                                <img th:src="@{session.rutaImagen}"
-                                     alt="img"
-                                     height="40"
-                                     class="rounded-circle"/>
-                                <span sec:authentication="name">xxx</span>
-                            </li>
-                            <li class="nav-item my-auto">
-                                <form method="post"
-                                      th:action="@{/logout}">
-                                    <button class="btn btn-dark">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </button>                                    
-                                </form>
-                            </li>
+
+
                         </ul>
                     </div>
                     <a class="navbar-brand" th:href="@{/carrito/listado}" href="#">

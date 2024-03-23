@@ -42,16 +42,21 @@ public class ServiciosController {
 
             String rutaImangen
                     = firebaseStorageService.cargaImagen(imagenFile, "servicios", servicios.getIdServicios());
-           
-
+          
             servicios.setRutaImagen(rutaImangen);
-
         }
-
         serviciosService.save(servicios);
-        return "redirect:/servicios/listado";
+        return "redirect:/servicios/inventarioServicios";
 
     }
+    @GetMapping("/inventarioServicios")
+    public String inventarioServicios(Model model) {
+        var listado = serviciosService.getServicios(false);
+        model.addAttribute("servicios", listado);
+        model.addAttribute("totalServicios", listado.size());
+        return "servicios/inventarioServicios";
+    }
+    
     @GetMapping("/modificar/{idServicios}")
     public String modifica(Servicios servicios, Model model){
         

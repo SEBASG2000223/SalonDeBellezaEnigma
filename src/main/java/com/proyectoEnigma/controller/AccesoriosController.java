@@ -20,56 +20,45 @@ public class AccesoriosController {
     private AccesoriosService accesoriosService;
 
     @GetMapping("/listado")
-
     public String listado(Model model) {
-
         var listado = accesoriosService.getAccesorios(false);
-
         model.addAttribute("accesorios", listado);
         model.addAttribute("totalAccesorios", listado.size());
-
-        return "/accesorios/listado";
-
+        return "accesorios/listado";
     }
+
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
     @PostMapping("/guardar")
-    public String guardar(Accesorios accesorios,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {
+    public String guardar(Accesorios accesorios, @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             accesoriosService.save(accesorios);
-
-            String rutaImangen
-                    = firebaseStorageService.cargaImagen(imagenFile, "accesorios", accesorios.getIdAccesorios());
-           
-
-            accesorios.setRutaImagen(rutaImangen);
-
+            String rutaImagen = firebaseStorageService.cargaImagen(imagenFile, "accesorios", accesorios.getIdAccesorios());
+            accesorios.setRutaImagen(rutaImagen);
         }
-
         accesoriosService.save(accesorios);
-        return "redirect:/accesorios/listado";
-
+        return "redirect:/accesorios/inventarioAccesorios";
     }
+
+    @GetMapping("/inventarioAccesorios")
+    public String inventarioAccesorios(Model model) {
+        var listado = accesoriosService.getAccesorios(false);
+        model.addAttribute("accesorios", listado);
+        model.addAttribute("totalAccesorios", listado.size());
+        return "accesorios/inventarioAccesorios";
+    }
+
     @GetMapping("/modificar/{idAccesorios}")
-    public String modifica(Accesorios accesorios, Model model){
-        
+    public String modifica(Accesorios accesorios, Model model) {
         accesorios = accesoriosService.getAccesorios(accesorios);
         model.addAttribute("accesorios", accesorios);
-        return "/accesorios/modifica";
-        
-        
+        return "accesorios/modifica";
     }
-        @GetMapping("/eliminar/{idAccesorios}")
-    public String elimina(Accesorios accesorios){
-        
-        accesoriosService.delete(accesorios);
-           return "redirect:/accesorios/listado";
-    }   
-    
-       
-      
-            
 
+    @GetMapping("/eliminar/{idAccesorios}")
+    public String elimina(Accesorios accesorios) {
+        accesoriosService.delete(accesorios);
+        return "redirect:/accesorios/listado";
+    }
 }

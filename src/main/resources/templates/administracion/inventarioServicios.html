@@ -1,0 +1,25 @@
+<!DOCTYPE html> <!-- dice la version de html -->
+
+<!--Esta es mi primera pagina html -->
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}"><!--encabezado  -->
+        <title>EnigmaSalon</title><!--el titulo que sale en las pestañas  -->
+
+
+    </head>
+
+    <body><!--todo lo questa dendtro del body aparece en el html-->
+        <header th:replace="~{layout/plantilla :: header}"/><!--encabezado  -->
+
+
+
+
+        <section th:replace="~{administracion/fragmentos :: card}"/>
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
