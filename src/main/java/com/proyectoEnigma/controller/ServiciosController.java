@@ -31,7 +31,7 @@ public class ServiciosController {
         return "/servicios/listado";
 
     }
-    @Autowired
+     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
     @PostMapping("/guardar")
@@ -41,10 +41,12 @@ public class ServiciosController {
             serviciosService.save(servicios);
 
             String rutaImangen
-                    = firebaseStorageService.cargaImagen(imagenFile, "servicios", servicios.getIdServicios());
-          
+                    = firebaseStorageService.cargaImagen(imagenFile, "categoria", servicios.getIdServicios());
+
             servicios.setRutaImagen(rutaImangen);
+
         }
+
         serviciosService.save(servicios);
         return "redirect:/servicios/inventarioServicios";
 
@@ -70,7 +72,7 @@ public class ServiciosController {
     public String elimina(Servicios servicios){
         
         serviciosService.delete(servicios);
-           return "redirect:/servicios/listado";
+           return "redirect:/servicios/inventarioServicios";
     }   
     
        

@@ -65,8 +65,46 @@
 </section>
 
 <section th:fragment="agregarServicio">
-    <!-- Aquí debería ir el código para la ventana modal de agregar servicio -->
-</section>
+            <div id="agregarServicio" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{servicio.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/servicios/guardar}" th:object="${servicios}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{servicios.nombreServicio}]]</label>
+                                    <input type="text" class="form-control" name="nombreServicio" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripcion">[[#{servicios.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen">[[#{servicios.rutaImagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{servicios.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 <section th:fragment="listadoServicios" id="servicios">
     <div class="container">
@@ -88,17 +126,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="servicio, contador : ${servicios}">
+                                <tr th:each="servicios, contador : ${servicios}">
                                     <td th:text="${contador.count}"></td>
-                                    <td th:text="${servicio.nombreServicio}"></td>
-                                    <td th:text="${servicio.descripcion}"></td>
-                                    <td th:text="${servicio.activo} ? 'Activo' : 'Inactivo'"></td>
+                                    <td th:text="${servicios.nombreServicio}"></td>
+                                    <td th:text="${servicios.descripcion}"></td>
+                                    <td th:text="${servicios.activo} ? 'Activo' : 'Inactivo'"></td>
                                     <td sec:authorize="hasRole('ADMIN')">
-                                        <a th:href="@{/servicios/eliminar/}+${servicio.idServicios}"
+                                        <a th:href="@{/servicios/eliminar/}+${servicios.idServicios}"
                                            class="btn btn-danger">
                                             <i class="fas fa-trash"></i> Eliminar
                                         </a>
-                                        <a th:href="@{/servicios/modificar/}+${servicio.idServicios}"
+                                        <a th:href="@{/servicios/modificar/}+${servicios.idServicios}"
                                            class="btn btn-success">
                                             <i class="fas fa-pencil"></i> Modificar
                                         </a>
@@ -116,12 +154,81 @@
     </div>
 </section>
 
-<section th:fragment="editarServicio">
-    <!-- Aquí debería ir el formulario de edición de servicio -->
-</section>
+ 
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+         <section th:fragment="editarServicio">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/servicios/guardar}" 
+                          th:object="${servicios}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idServicio" th:field="*{idServicio}"/>
+                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
+                        <section th:replace="~{servicios/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{accion.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="descripcion">[[#{servicios.descripcion}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="descripcion" th:field="*{descripcion}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="activo">[[#{servicios.activo}]]</label>
+                                                    <input class="form-check-input" 
+                                                           type="checkbox" 
+                                                           name="activo" 
+                                                           id="activo"
+                                                           th:field="*{activo}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="imagen">[[#{servicios.rutaImagen}]]</label>
+                                                    <input class="form-control" type="file" name="imagenFile"
+                                                           onchange="readURL(this);" />
+                                                    <img id="blah" th:src="@{${servicios.rutaImagen}}" alt="your image" height="200"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-<section th:fragment="botonesEditar">
-    <!-- Aquí deberían ir los botones de edición -->
-</section>
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/servicios/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/servicios/eliminar/}+${servicios.idServicios}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
 </body>
 </html>
