@@ -27,7 +27,7 @@ CREATE TABLE Servicios (
     id_servicios INT AUTO_INCREMENT PRIMARY KEY,
     nombre_servicio VARCHAR(255),
     descripcion VARCHAR(255),
-    ruta_imagen VARCHAR(255),
+    ruta_imagen VARCHAR(1024),
     activo BOOLEAN
 );
 

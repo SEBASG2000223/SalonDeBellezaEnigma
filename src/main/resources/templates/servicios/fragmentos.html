@@ -123,25 +123,23 @@
                                     <th>Descripción</th>
                                     <th>Activo</th>
                                     <th>Acciones</th>
-                                </tr>
+                                   </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="servicios, contador : ${servicios}">
-                                    <td th:text="${contador.count}"></td>
-                                    <td th:text="${servicios.nombreServicio}"></td>
-                                    <td th:text="${servicios.descripcion}"></td>
+                                    <td>[[${contador.count}]]</td>
+                                    <td>[[${servicios.nombreServicio}]]</td>
+                                    <td>[[${servicios.descripcion}]]</td>
                                     <td th:text="${servicios.activo} ? 'Activo' : 'Inactivo'"></td>
                                     <td sec:authorize="hasRole('ADMIN')">
                                         <a th:href="@{/servicios/eliminar/}+${servicios.idServicios}"
                                            class="btn btn-danger">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                        </a>
+                                            <i class="fas fa-trash"></i> Eliminar</a>
+                                        
                                         <a th:href="@{/servicios/modificar/}+${servicios.idServicios}"
-                                           class="btn btn-success">
-                                            <i class="fas fa-pencil"></i> Modificar
-                                        </a>
-                                    </td>
-                                </tr>
+                                           class="btn btn-success mt-1">
+                                            <i class="fas fa-pencil"></i> Modificar</a></td></tr>
+                           
                             </tbody>
                         </table>
                     </div>
@@ -165,7 +163,7 @@
                           th:object="${servicios}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idServicio" th:field="*{idServicio}"/>
+                        <input type="hidden" name="idServicios" th:field="*{idServicios}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
                         <section th:replace="~{servicios/fragmentos :: botonesEditar}"/>
                         <div id=details>
@@ -177,6 +175,12 @@
                                                 <h4>[[#{accion.actualizar}]]</h4>
                                             </div>
                                             <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="nombreServicio">[[#{servicios.descripcion}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="nombreServicio" th:field="*{nombreServicio}"
+                                                           required="true">
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="descripcion">[[#{servicios.descripcion}]]</label>
                                                     <input type="text" class="form-control" 
@@ -212,7 +216,7 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/servicios/listado}" class="btn btn-primary">
+                        <a th:href="@{/servicios/inventarioServicios}" class="btn btn-primary">
                             <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                         </a>
                     </div>

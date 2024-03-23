@@ -59,6 +59,6 @@ public class AccesoriosController {
     @GetMapping("/eliminar/{idAccesorios}")
     public String elimina(Accesorios accesorios) {
         accesoriosService.delete(accesorios);
-        return "redirect:/accesorios/listado";
+        return "redirect:/accesorios/inventarioAccesorios";
     }
 }
