@@ -65,7 +65,7 @@
                                    aria-expanded="false">
                                     <b class="text-black">[[#{plantilla.administracion}]]</b>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
+                                <ul class="dropdown-menu dropdown-menu-dark" sec:authorize="hasRole('VENDEDOR')">
                                     <li><a class="dropdown-item" th:href="@{/accesorios/inventarioAccesorios}">[[#{plantilla.inventarioAccesorios}]]</a></li>
                                     <li><a class="dropdown-item" th:href="@{/servicios/inventarioServicios}">[[#{plantilla.inventarioServicios}]]</a></li>
                                 </ul>
