@@ -17,6 +17,8 @@ public class Accesorios implements Serializable{
     private Long idAccesorios;
     private String nombreAccesorio;
     private String descripcion;
+    private double precio;
+    private int existencias;
     private String rutaImagen;
     private boolean activo;
     

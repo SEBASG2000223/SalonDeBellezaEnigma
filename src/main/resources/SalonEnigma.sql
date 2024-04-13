@@ -12,6 +12,8 @@ CREATE TABLE Accesorios (
     id_accesorios INT AUTO_INCREMENT PRIMARY KEY,
     nombre_accesorio varchar(255) not null,
     descripcion VARCHAR(255),
+    precio double not null,
+	existencias int not null,
     ruta_imagen VARCHAR(1024),
     activo BOOLEAN
 );
@@ -80,15 +82,15 @@ insert into Rol (id_rol, nombre, id_usuario) values
  (4,'ROLE_VENDEDOR',2), (5,'ROLE_USER',2),
  (6,'ROLE_USER',3);
 
-INSERT INTO Accesorios (id_accesorios, nombre_accesorio, descripcion, ruta_imagen, activo) VALUES 
-('1','Silla Profesional', 'Ideal para brindar comodidad y estilo a tus clientes.', 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fsilla.png?alt=media&token=ecd78915-1ad0-428c-8fac-bed2303a9b0c', true), 
-('2','Secadora Profesional', 'Potente y eficiente para obtener resultados profesionales.','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fsecador.png?alt=media&token=0b30a518-51c1-4618-8135-943cf197bd38', true),
-('3','Tijeras para Cortar Cabello','Precisas y ergonómicas para lograr cortes perfectos.','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Ftijeras.png?alt=media&token=b6391486-a0d0-4337-835b-732bc02b72d1',true),
-('4','Plancha Profesional','Consigue un cabello liso y brillante con esta plancha de alta calidad','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fplancha.png?alt=media&token=380ed9af-52c7-43cf-95f9-316258e4aeff',true),
-('5','Kit de Peines','Variedad de peines profesionales para todo tipo de estilos y cortes.','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fpeine.png?alt=media&token=583ba4d7-67a1-44de-a072-735e62a626e8',true),
-('6','Capa Profesional','Mantén a tus clientes cómodos y protegidos durante sus servicios.', 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fcapa.png?alt=media&token=9cf8be5b-4232-4f88-b22a-f1dff0769eed', false),
-('7','Espejo de Maquillaje con Luz','Ideal para aplicar maquillaje con precisión gracias a su iluminación LED.','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fespejo.png?alt=media&token=de1138a7-d564-436b-bad2-f639d3711a21', true),
-('8','Cepillo Profesional','Perfecto para desenredar y dar volumen al cabello.','https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fcepillo.png?alt=media&token=033a34aa-e1bc-460f-82dc-822d47ae6a5e', true);
+INSERT INTO Accesorios (id_accesorios, nombre_accesorio, descripcion, precio, existencias, ruta_imagen, activo) VALUES 
+('1','Silla Profesional', 'Ideal para brindar comodidad y estilo a tus clientes.', 150.00, 10, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fsilla.png?alt=media&token=ecd78915-1ad0-428c-8fac-bed2303a9b0c', true), 
+('2','Secadora Profesional', 'Potente y eficiente para obtener resultados profesionales.', 200.00, 15, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fsecador.png?alt=media&token=0b30a518-51c1-4618-8135-943cf197bd38', true),
+('3','Tijeras para Cortar Cabello','Precisas y ergonómicas para lograr cortes perfectos.', 80.00, 20, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Ftijeras.png?alt=media&token=b6391486-a0d0-4337-835b-732bc02b72d1',true),
+('4','Plancha Profesional','Consigue un cabello liso y brillante con esta plancha de alta calidad', 120.00, 12, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fplancha.png?alt=media&token=380ed9af-52c7-43cf-95f9-316258e4aeff',true),
+('5','Kit de Peines','Variedad de peines profesionales para todo tipo de estilos y cortes.', 50.00, 25, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fpeine.png?alt=media&token=583ba4d7-67a1-44de-a072-735e62a626e8',true),
+('6','Capa Profesional','Mantén a tus clientes cómodos y protegidos durante sus servicios.', 30.00, 18, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fcapa.png?alt=media&token=9cf8be5b-4232-4f88-b22a-f1dff0769eed', false),
+('7','Espejo de Maquillaje con Luz','Ideal para aplicar maquillaje con precisión gracias a su iluminación LED.', 70.00, 8, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fespejo.png?alt=media&token=de1138a7-d564-436b-bad2-f639d3711a21', true),
+('8','Cepillo Profesional','Perfecto para desenredar y dar volumen al cabello.', 40.00, 30, 'https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FAccesorios%2Fcepillo.png?alt=media&token=033a34aa-e1bc-460f-82dc-822d47ae6a5e', true);
 
 INSERT INTO Servicios (id_servicios, nombre_servicio, descripcion, ruta_imagen, activo)  
 VALUES      
