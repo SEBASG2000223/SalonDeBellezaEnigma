@@ -1,12 +1,15 @@
 package com.proyectoEnigma;
 
 import java.util.Locale;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
@@ -49,28 +52,28 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
 
     //Este metodo la prox semana se borra...
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("juan")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-
-        UserDetails vendedor = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-
-        UserDetails usuario = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(usuario, vendedor, admin);
-    }
+//    @Bean
+//    public UserDetailsService users() {
+//        UserDetails admin = User.builder()
+//                .username("juan")
+//                .password("{noop}123")
+//                .roles("USER", "VENDEDOR", "ADMIN")
+//                .build();
+//
+//        UserDetails vendedor = User.builder()
+//                .username("rebeca")
+//                .password("{noop}456")
+//                .roles("USER", "VENDEDOR")
+//                .build();
+//
+//        UserDetails usuario = User.builder()
+//                .username("pedro")
+//                .password("{noop}789")
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(usuario, vendedor, admin);
+//    }
 
     @Bean
     public SecurityFilterChain
@@ -82,6 +85,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/js/**",
                         "/webjars/**",
                         "/css/**",
+                        "/registro/**",
                         "/carrito/**")
                 .permitAll()
                 .requestMatchers("/accesorios/listado",
@@ -116,5 +120,13 @@ public class ProjectConfig implements WebMvcConfigurer {
                         .defaultSuccessUrl("/", true))
                 .logout((logout) -> logout.permitAll());
         return http.build();
+    }
+            
+            @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
+        build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 }

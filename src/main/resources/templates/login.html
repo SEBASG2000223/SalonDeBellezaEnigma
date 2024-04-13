@@ -37,14 +37,24 @@
                                            type="password" 
                                            name="password"
                                            id="password"/>
-                                    
+
                                 </div>
                             </div>
                             <div class="card-footer col text-center">
                                 <button class="btn" style="background: #c89993;" type="submit">
                                     <i class="fas fa-sign-in-alt"></i> [[#{login.login}]]
                                 </button>
+                                <button class="btn" style="background: #c89993;" >
+                                    <a th:href="@{/registro/nuevo}" style="text-decoration: none; color: black;">
+                                        <i class="fas fa-user-plus"></i> [[#{accion.registrar}]]
+                                    </a>
+                                </button>
+                                <button class="btn" style="background: #c89993;" >                                      
+                                    <a th:href="@{/registro/recordar}"style="text-decoration: none; color: black;">
+                                        <i class="fas fa-envelope"></i> [[#{accion.recordar}]]</a>
+                                </button>
                             </div>
+
                         </form>
                     </div>
                 </div>
