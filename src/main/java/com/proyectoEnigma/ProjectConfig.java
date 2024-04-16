@@ -85,6 +85,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/js/**",
                         "/webjars/**",
                         "/css/**",
+                        "/servicios/**",
                         "/registro/**",
                         "/carrito/**")
                 .permitAll()
@@ -108,6 +109,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/servicios/inventarioServicios",
                         "/accesorios/inventarioAccesorios",
                         "/accesorios/modificar/**",
+                        "/carrito/modificar/**",
+                        "/servicios/agendarServicios",
                         "/accesorios/eliminar/**",
                         "/accesorios/guardar",
                         "/pruebas/**")

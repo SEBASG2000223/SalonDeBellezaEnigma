@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+'<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
@@ -128,7 +128,8 @@
                                     <input type="text" class="form-control" name="username" th:field="*{username}"/></div>                                                
                                 <div class="mb-3">
                                     <label for="email">[[#{usuario.correo}]]</label>
-                                    <input type="email" class="form-control" name="correo" th:field="*{correo}"/></div>
+                                    <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
+                                </div>
                             </div>
                             <div class="card-footer text-end">                                                
                                 <button type="submit" class="btn btn-success">

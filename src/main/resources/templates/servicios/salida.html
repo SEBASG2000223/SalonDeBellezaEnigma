@@ -3,10 +3,10 @@
 <!--Esta es mi primera pagina html -->
 <html 
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+    xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}"><!--encabezado  -->
-        <title>EnigmaSalon</title><!--el titulo que sale en las pestañas  -->
+        <title>TechShop</title><!--el titulo que sale en las pestañas  -->
 
 
     </head>
@@ -14,7 +14,7 @@
     <body><!--todo lo questa dendtro del body aparece en el html-->
         <header th:replace="~{layout/plantilla :: header}"/><!--encabezado  -->
 
-        <section th:replace="~{carrito/fragmentos :: listadoAccesorios}"/>
+        <section th:replace="~{servicios/fragmentos :: unaSalida}"/>
 
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>

@@ -1,7 +1,10 @@
 package com.proyectoEnigma.service;
 
 import com.proyectoEnigma.domain.Servicios;
+import com.proyectoEnigma.domain.Usuario;
+import jakarta.mail.MessagingException;
 import java.util.List;
+import org.springframework.ui.Model;
 
 public interface ServiciosService {
     
@@ -21,4 +24,7 @@ public interface ServiciosService {
     //valor en IdServicios lo intenta actulizar
     //si no tiene valor idServicios lo intenta actulizar
     public void save(Servicios servicios);
+    
+    public Model agendarServicios(Model model, Usuario usuario, Servicios servicios) throws MessagingException;
+
 }

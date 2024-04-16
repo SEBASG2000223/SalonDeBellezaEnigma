@@ -1,8 +1,10 @@
 package com.proyectoEnigma.controller;
 
 import com.proyectoEnigma.domain.Servicios;
+import com.proyectoEnigma.domain.Usuario;
 import com.proyectoEnigma.service.ServiciosService;
 import com.proyectoEnigma.service.FirebaseStorageService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class ServiciosController {
         var listado = serviciosService.getServicios(false);
 
         model.addAttribute("servicios", listado);
+        model.addAttribute("usuario", new Usuario());
         model.addAttribute("totalServicios", listado.size());
 
         return "/servicios/listado";
@@ -76,7 +79,12 @@ public class ServiciosController {
     }   
     
        
-      
+      @PostMapping("/agendarServicios")
+    public String agendarServicios(Model model, Usuario usuario, Servicios servicios)
+            throws MessagingException {
+        model = serviciosService.agendarServicios(model, usuario, servicios);
+        return "/servicios/salida";
+    }
             
 
 }

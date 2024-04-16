@@ -35,10 +35,26 @@
                             <div class="modal-body">
                                 <!-- Contenido del modal -->
                                 <p>Modal body text goes here for ID: <span th:text="${a.idServicios}"></span>.</p>
+                                <!-- Agregar formulario para recordar al usuario -->
+                                <form method="POST" th:action="@{/servicios/agendarServicios}" th:object="${usuario}" class="was-validated">
+                                    <div class="mb-3">
+                                        <label for="username">[[#{usuario.username}]]</label>
+                                        <input type="text" class="form-control" name="username" th:field="*{username}"/>
+                                    </div>                                                
+                                    <div class="mb-3">
+                                        <label for="email">[[#{usuario.correo}]]</label>
+                                        <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
+                                    </div>
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-address-card"></i> Agendar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <!-- Este botón es solo para cerrar el modal, no para enviar el formulario -->
                             </div>
                         </div>
                     </div>
@@ -47,6 +63,9 @@
         </div>
     </div>
 </section>
+
+    
+    
 <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
     <div class="container">
         <div class="row">
@@ -63,6 +82,22 @@
         </div>
     </div>
 </section>
+    
+    <section th:fragment="unaSalida">
+            <div class="row py-2 justify-content-center">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header align-items-center">
+                            [[${titulo}]]
+                        </div>
+                        <div class="card-body">
+                            <strong>[[${mensaje}]]</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
 <section th:fragment="agregarServicio">
             <div id="agregarServicio" 

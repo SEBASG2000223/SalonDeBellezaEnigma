@@ -8,22 +8,32 @@
 <body>
     <section th:fragment="card" id="accesorios" class="pt-md-5">
     <!-- Sección para las tarjetas -->
-    <div class="container">
-        <!-- Filas y columnas -->
-        <div class="row justify-content-center">
-            <!-- Tarjetas -->
-            <div class="col-md-3 mb-4" th:each="a : ${accesorios}">
-                <div class="card">
-                    <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3" th:text="${a.nombreAccesorio}"></h5>
-                        <p class="card-text" th:text="${a.descripcion}"></p>
-                        <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idAccesorios}">
-                            Comprar
-                        </button>
-                    </div>
+   <div class="container">
+    <!-- Filas y columnas -->
+    <div class="row justify-content-center">
+        <!-- Tarjetas -->
+        <div class="col-md-3 mb-4" th:each="a : ${accesorios}">
+            <div class="card">
+                <!-- Imagen del accesorio -->
+                <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
+                <div class="card-body text-center">
+                    <!-- Nombre del accesorio -->
+                    <h5 class="card-title mb-3" th:text="${a.nombreAccesorio}"></h5>
+                    <!-- Descripción del accesorio -->
+                    <p class="card-text" th:text="${a.descripcion}"></p>
+                    <!-- Precio y existencias del accesorio -->
+                    <p class="card-text">Precio: [[${a.precio}]] | Existencias: [[${a.existencias}]]</p>
+                    <!-- Botón para abrir el modal -->
+                    <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idAccesorios}">
+                        Comprar
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                 <!-- Modal asociado a cada tarjeta -->
                 <div class="modal" th:id="'modal' + ${a.idAccesorios}" >
                     <div class="modal-dialog">
@@ -63,6 +73,8 @@
         </div>
     </div>
 </section>
+    
+    
 <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
     <div class="container">
         <div class="row">
