@@ -16,58 +16,28 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/conozcanos")
 public class ConozcanosController {
 
-    @Autowired
-    private ConozcanosService conozcanosService;
 
     @GetMapping("/listado")
-
-    public String listado(Model model) {
-
-        var listado = conozcanosService.getConozcanos(false);
-
-        model.addAttribute("conozcanos", listado);
-        model.addAttribute("totalConozcanos", listado.size());
+    public String listado() {
 
         return "/conozcanos/listado";
 
     }
-    @Autowired
-    private FirebaseStorageService firebaseStorageService;
+  
+    @GetMapping("/informacion")
+    public String informacion() {
 
-    @PostMapping("/guardar")
-    public String guardar(Conozcanos conozcanos,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {
-        if (!imagenFile.isEmpty()) {
-            conozcanosService.save(conozcanos);
-
-            String rutaImangen
-                    = firebaseStorageService.cargaImagen(imagenFile, "conozcanos", conozcanos.getIdConozcanos());
-           
-
-            conozcanos.setRutaImagen(rutaImangen);
-
-        }
-
-        conozcanosService.save(conozcanos);
-        return "redirect:/conozcanos/listado";
+     
+        return "/conozcanos/informacion";
 
     }
-    @GetMapping("/modificar/{idConozcanos}")
-    public String modifica(Conozcanos conozcanos, Model model){
-        
-        conozcanos = conozcanosService.getConozcanos(conozcanos);
-        model.addAttribute("conozcanos", conozcanos);
-        return "/conozcanos/modifica";
-        
-        
+    @GetMapping("/contactenos")
+    public String contactenos() {
+
+     
+        return "/conozcanos/contactenos";
+
     }
-        @GetMapping("/eliminar/{idConozcanos}")
-    public String elimina(Conozcanos conozcanos){
-        
-        conozcanosService.delete(conozcanos);
-           return "redirect:/conozcanos/listado";
-    }   
-    
        
       
             

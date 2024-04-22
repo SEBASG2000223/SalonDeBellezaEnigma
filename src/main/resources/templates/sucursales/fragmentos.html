@@ -27,7 +27,10 @@
                             Más información
                         </button>
                     </div>
-                </div>
+                    </div>
+                   
+              
+                
                 <!-- Modal asociado a cada sucursal -->
                 <div class="modal" th:id="'modal' + ${s.idSucursales}">
                     <div class="modal-dialog">
@@ -40,6 +43,8 @@
                             <div class="modal-body">
                                 <!-- Contenido del modal (más información sobre la sucursal) -->
                                 <p th:text="${s.descripcion}"></p>
+                                
+                                <div th:utext="${s.ubicacion}"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

@@ -9,31 +9,31 @@
 
         <!-- 2 Presenta el listado de accesorios de manera elegante -->
         <section th:fragment="listadoAccesorios" id="accesorios">
-    <div class="container">
-        <div class="row row-cols-2">
-            <h2 class="inline">[[#{index.nuestrosAccesorios}]]</h2>
-            <div id="resultsBlock"></div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-3 mb-4" th:each="p : ${accesorios}">
-                <div class="card">
-                    <img th:src="${p.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3" th:text="${p.nombreAccesorio}"></h5>
-                        <p class="card-text" th:text="${p.descripcion}"></p>
-                        <p class="card-text">Precio: [[${p.precio}]] | Existencias: [[${p.existencias}]]</p>
-                        <form>
-                            <input type="hidden" name="idAccesorios" th:value="${p.idAccesorios}" />
-                            <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button">         
-                               Añadir al carrito
-                            </button>
-                        </form>
+            <div class="container">
+                <div class="row row-cols-2 mt-5">
+
+                    <div id="resultsBlock"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3 mb-4" th:each="p : ${accesorios}">
+                        <div class="card">
+                            <img th:src="${p.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
+                            <div class="card-body text-center">
+                                <h5 class="card-title mb-3" th:text="${p.nombreAccesorio}"></h5>
+                                <p class="card-text" th:text="${p.descripcion}"></p>
+                                <p class="card-text">Precio: [[${p.precio}]] | Existencias: [[${p.existencias}]]</p>
+                                <form>
+                                    <input type="hidden" name="idAccesorios" th:value="${p.idAccesorios}" />
+                                    <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button">         
+                                        Añadir al carrito
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 
         <!-- 2 Presenta el listado de accesorios de manera elegante -->
@@ -53,7 +53,7 @@
         <section th:fragment="listadoCarrito" id="items">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-9 mt-5">
                         <div class="card">
                             <div class="card-header">
                                 <h4>[[#{carrito.titulo}]]</h4>
@@ -75,13 +75,17 @@
                                             <td style="text-align: end">[[${item.precio}]]</td>
                                             <td style="text-align: center">[[${item.cantidad}]]</td>
                                             <td style="text-align: end">[[${item.precio*item.cantidad}]]</td>
-
-                                            <td><a th:href="@{/carrito/eliminar/}+${item.idAccesorios}"
+                                            <td sec:authorize="hasRole('ADMIN')">
+                                                <a th:href="@{/carrito/eliminar/}+${item.idAccesorios}"
                                                    class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </a>
                                                 <a th:href="@{/carrito/modificar/}+${item.idAccesorios}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                                   class="btn btn-success mt-1">
+                                                    <i class="fas fa-pencil"></i> Modificar
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -90,8 +94,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card text-center bg-success text-white mb-3">
+                    <div class="col-md-3 mt-5">
+                        <div class="card text-center text-dark mb-3" style="background-color: #c89993;">
                             <div class="card-body">
                                 <h3>[[#{carrito.totalCompra}]]</h3>
                                 <h4 class="fs-2">[[${carritoTotal}]]</h4>

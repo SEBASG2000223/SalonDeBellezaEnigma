@@ -51,29 +51,6 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
 
-    //Este metodo la prox semana se borra...
-//    @Bean
-//    public UserDetailsService users() {
-//        UserDetails admin = User.builder()
-//                .username("juan")
-//                .password("{noop}123")
-//                .roles("USER", "VENDEDOR", "ADMIN")
-//                .build();
-//
-//        UserDetails vendedor = User.builder()
-//                .username("rebeca")
-//                .password("{noop}456")
-//                .roles("USER", "VENDEDOR")
-//                .build();
-//
-//        UserDetails usuario = User.builder()
-//                .username("pedro")
-//                .password("{noop}789")
-//                .roles("USER")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(usuario, vendedor, admin);
-//    }
 
     @Bean
     public SecurityFilterChain
@@ -95,6 +72,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/servicios/inventarioServicios",
                         "/accesorios/inventarioAccesorios",
                         "/sucursales/listado",
+                        "/conozcanos/contactenos",
+                        "/conozcanos/informacion",
                         "/conozcanos/listado"
                         
                 )
