@@ -54,4 +54,11 @@ public class AccesoriosServiceImpl
         accesoriosDao.save(accesorios);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Accesorios>
+            consultaJPQLPorNombreAccesorio(String texto) {
+        return accesoriosDao.consultaJPQLPorNombreAccesorio(texto);
+    }
+
 }

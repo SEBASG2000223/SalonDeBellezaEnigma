@@ -1,6 +1,7 @@
 package com.proyectoEnigma.serviceImpl;
 
 import com.proyectoEnigma.dao.ServiciosDao;
+import com.proyectoEnigma.domain.Accesorios;
 import com.proyectoEnigma.domain.Servicios;
 import com.proyectoEnigma.domain.Usuario;
 import com.proyectoEnigma.service.CorreoService;
@@ -25,10 +26,6 @@ public class ServiciosServiceImpl
     private ServiciosDao serviciosDao;
     @Autowired
     private CorreoService correoService;
-    @Autowired
-    private CorreoService serviciosService;
-    @Autowired
-    private UsuarioService usuarioService;
     @Autowired
     private MessageSource messageSource;  //creado en semana 4...
 
@@ -113,4 +110,6 @@ public class ServiciosServiceImpl
         // Enviamos el correo
         correoService.enviarCorreoHtml(usuario.getCorreo(), asunto, mensaje);
     }
+
+  
 }

@@ -61,4 +61,5 @@ public class AccesoriosController {
         accesoriosService.delete(accesorios);
         return "redirect:/accesorios/inventarioAccesorios";
     }
+    
 }

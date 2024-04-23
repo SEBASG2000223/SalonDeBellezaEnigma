@@ -19,14 +19,9 @@ public class ConozcanosServiceImpl
 
     @Override
     @Transactional(readOnly = true)//que el metodo accede a una base de datos y que la base es de solo lectura
-    public List<Conozcanos> getConozcanos(boolean activos) {
+    public List<Conozcanos> getConozcanos() {
 
         var listado = conozcanosDao.findAll();
-
-        if (activos) {//si solo q uiero los activos
-            listado.removeIf(c -> !c.isActivo());
-
-        }
 
         return listado;
 

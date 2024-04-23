@@ -20,7 +20,7 @@
                         <p class="card-text" th:text="${a.descripcion}"></p>
                         <!-- Botón para abrir el modal -->
                         <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idServicios}">
-                            Comprar
+                            Agendar
                         </button>
                     </div>
                 </div>
@@ -29,24 +29,21 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Modal title</h5>
+                                <h5 class="modal-title" th:text=${a.nombreServicio}></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- Contenido del modal -->
-                                <p>Modal body text goes here for ID: <span th:text="${a.idServicios}"></span>.</p>
+                                <p class="justify-content-center">Escribe el correo donde quieres recibir la confirmacion.</p>
                                 <!-- Agregar formulario para recordar al usuario -->
                                 <form method="POST" th:action="@{/servicios/agendarServicios}" th:object="${usuario}" class="was-validated">
-                                    <div class="mb-3">
-                                        <label for="username">[[#{usuario.username}]]</label>
-                                        <input type="text" class="form-control" name="username" th:field="*{username}"/>
-                                    </div>                                                
+                                                                                  
                                     <div class="mb-3">
                                         <label for="email">[[#{usuario.correo}]]</label>
                                         <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
                                     </div>
                                     <div class="text-end">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn text-dark" style="background-color: #c89993;">
                                             <i class="fas fa-address-card"></i> Agendar
                                         </button>
                                     </div>
@@ -85,7 +82,7 @@
     
     <section th:fragment="unaSalida">
             <div class="row py-2 justify-content-center">
-                <div class="col-md-3">
+                <div class="col-md-3 mt-4">
                     <div class="card">
                         <div class="card-header align-items-center">
                             [[${titulo}]]

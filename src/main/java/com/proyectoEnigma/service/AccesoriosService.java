@@ -21,4 +21,8 @@ public interface AccesoriosService {
     //valor en IdAccesorios lo intenta actulizar
     //si no tiene valor idAccesorios lo intenta actulizar
     public void save(Accesorios accesorios);
+
+     public List<Accesorios>
+            consultaJPQLPorNombreAccesorio(String texto);
+
 }

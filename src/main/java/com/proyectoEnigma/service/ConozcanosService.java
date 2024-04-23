@@ -7,7 +7,7 @@ public interface ConozcanosService {
     
     //rECUPERA UNA LISTA DE LOS REGISTROS DE LA TABLA CATEGORIA
 
-    public List<Conozcanos> getConozcanos(boolean activos);
+    public List<Conozcanos> getConozcanos();
     
     //Recupera un registro de la tbala conozcanos buscando
     //el atributo idConozcanos en la tabla

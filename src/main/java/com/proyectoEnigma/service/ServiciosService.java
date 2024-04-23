@@ -1,5 +1,6 @@
 package com.proyectoEnigma.service;
 
+import com.proyectoEnigma.domain.Accesorios;
 import com.proyectoEnigma.domain.Servicios;
 import com.proyectoEnigma.domain.Usuario;
 import jakarta.mail.MessagingException;
@@ -27,4 +28,5 @@ public interface ServiciosService {
     
     public Model agendarServicios(Model model, Usuario usuario, Servicios servicios) throws MessagingException;
 
+  
 }

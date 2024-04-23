@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import lombok.Data;
 
-@Data //esta vara es para que cree set y get automaticamnetey metodos como el toString
+@Data
 @Entity
 @Table(name = "Conozcanos")
 public class Conozcanos implements Serializable {
@@ -15,8 +15,8 @@ public class Conozcanos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conozcanos")
     private Long idConozcanos;
+
     private String descripcion;
     private String rutaImagen;
-    private boolean activo;
-
+    
 }

@@ -6,30 +6,79 @@
         <title>TechShop</title>
     </head>
     <body>
-        <section th:fragment="card" class="d-flex justify-content-center flex-wrap mt-5">
-            <!-- 1 Sección para crear el botón de agregar... llamará a una ventana modal-->
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FIconoInfo.png?alt=media&token=e941b81a-c89a-4f06-8c4d-6c8ce01a8eda" class="card-img-top" alt="..."/>
-                <div class="card-body">
-                    <h5 class="card-title">Información</h5>
-                    <a href="/conozcanos/informacion" class="btn btn-primary">Click aquí</a>
+        <section th:fragment="card" id="conozcanos" class="d-flex justify-content-center flex-wrap mt-5">
+            <!-- Sección para mostrar las tarjetas de Conozcanos -->
+            <div th:each="c : ${conozcanos}">
+                <div class="card mx-2 mb-4" style="width: 18rem;">
+                    <img th:src="${c.rutaImagen}" class="card-img-top" alt="..."/>
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3" th:text="${c.descripcion}"></h5>
+                        <a th:href="@{'/conozcanos/informacion'}" class="btn btn-primary" th:if="${c.idConozcanos == 1}">Click aquí</a>
+                        <a th:href="@{'/conozcanos/contactenos'}" class="btn btn-primary" th:if="${c.idConozcanos == 2}">Click aquí</a>
+                    </div>
                 </div>
-            </div>
-            <div class="card mx-2 mb-4" style="width: 18rem;">
-                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2FIconoContactenos.png?alt=media&token=53d45252-8218-414d-b584-fdc37adaa284" class="card-img-top" alt="..."/>
-                <div class="card-body">
-                    <h5 class="card-title">Contáctenos</h5>
-                    <a href="/conozcanos/contactenos" class="btn btn-primary">Click aquí</a>
-                </div>
-            </div>
-            <div class="w-100"></div> <!-- Divisor de fila -->
-
-            <div class="w-100 d-flex justify-content-center">
-                <p>10 años de experiencia | +1000 Clientes satisfechos | 3 Sucursales</p>
             </div>
         </section>
 
+        <section th:fragment="informacion" class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Nosotros</h2>
+                    <p>Somos un salón de belleza especializado en la venta de accesorios y productos de belleza de alta calidad. En TechShop, nos dedicamos a ofrecer a nuestros clientes una experiencia única de belleza.</p>
+                    <p>Nuestro compromiso es brindar servicios de primera calidad, con profesionales expertos en belleza y asesoramiento personalizado para satisfacer todas las necesidades de nuestros clientes.</p>
+                    <h2>Servicios</h2>
+                    <ul>
+                        <li>Corte de cabello</li>
+                        <li>Tinte y coloración</li>
+                        <li>Manicura y pedicura</li>
+                        <li>Maquillaje</li>
+                        <li>Tratamientos faciales y corporales</li>
+                        <li>Depilación</li>
+                        <li>Peinados y recogidos</li>
+                        <li>Más...</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>Nuestras Sucursales</h2>
+                    <ul>
+                        <li>Desamparados</li>
+                        <li>Zapote</li>
+                        <li>Guadalupe</li>
+                    </ul>
+                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b>Ver todas las sucursales</b></a>
+                </div>
+            </div>
+        </section>
 
+        <section th:fragment="contactenos" class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Encuéntranos</h2>
+                    <p>Visítanos en cualquiera de nuestras sucursales:</p>
+                    <ul>
+                        <li>Desamparados</li>
+                        <li>Zapote</li>
+                        <li>Guadalupe</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>Síguenos en Redes Sociales</h2>
+                    <p>Mantente al día con todas nuestras novedades y promociones. ¡Síguenos en nuestras redes sociales!</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
+                        <li class="list-inline-item"><a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a></li>
+                    </ul>
+                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b>Ver todas las sucursales</b></a>
 
-         </body>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-100"></div> <!-- Divisor de fila -->
+
+        <div class="w-100 d-flex justify-content-center">
+            <p>10 años de experiencia | +1000 Clientes satisfechos | 3 Sucursales</p>
+        </div>
+    </body>
 </html>

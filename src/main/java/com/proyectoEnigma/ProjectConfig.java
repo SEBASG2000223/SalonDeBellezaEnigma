@@ -6,11 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -51,7 +48,6 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
 
-
     @Bean
     public SecurityFilterChain
             securityFilterChain(HttpSecurity http)
@@ -63,36 +59,23 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/webjars/**",
                         "/css/**",
                         "/servicios/**",
+                        "/accesorios/**",
                         "/registro/**",
-                        "/carrito/**")
+                        "/pruebas/**",
+                        "/carrito/**",
+                        "/sucursales/**",
+                        "/conozcanos/**"
+                )
                 .permitAll()
-                .requestMatchers("/accesorios/listado",
-                        "/servicios/listado",
-                        "/carrito/listado",
+                .requestMatchers(
                         "/servicios/inventarioServicios",
-                        "/accesorios/inventarioAccesorios",
-                        "/sucursales/listado",
-                        "/conozcanos/contactenos",
-                        "/conozcanos/informacion",
-                        "/conozcanos/listado"
-                        
+                        "/accesorios/inventarioAccesorios"
                 )
                 .hasRole("VENDEDOR")
-                .requestMatchers("/accesorios/listado",
-                        "/servicios/listado",
-                        "/servicios/nuevo",
-                        "/servicios/modificar/**",
-                        "/servicios/eliminar/**",
-                        "/servicios/guardar",
-                        "/accesorios/nuevo",
+                .requestMatchers(
                         "/servicios/inventarioServicios",
-                        "/accesorios/inventarioAccesorios",
-                        "/accesorios/modificar/**",
-                        "/carrito/modificar/**",
-                        "/servicios/agendarServicios",
-                        "/accesorios/eliminar/**",
-                        "/accesorios/guardar",
-                        "/pruebas/**")
+                        "/accesorios/inventarioAccesorios"
+                )
                 .hasRole("ADMIN")
         )
                 .formLogin((form)
@@ -103,8 +86,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
-            
-            @Autowired
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired

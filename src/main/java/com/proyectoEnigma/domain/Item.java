@@ -11,7 +11,7 @@ public class Item extends Accesorios {
 
     public Item(Accesorios p) {
         super.setActivo(p.isActivo());
-        super.setDescripcion(p.getDescripcion());
+        super.setDescripcion(p.getNombreAccesorio());
         super.setExistencias(p.getExistencias());
         super.setIdAccesorios(p.getIdAccesorios());
         super.setPrecio(p.getPrecio());

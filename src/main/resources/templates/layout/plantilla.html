@@ -44,22 +44,24 @@
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
+
                             <li class="nav-item" >
-                                <a class="nav-link active text-black" sec:authorize="hasRole('VENDEDOR')" aria-current="page" th:href="@{/accesorios/listado}"
+                                <a class="nav-link active text-black"  aria-current="page" th:href="@{/accesorios/listado}"
                                    href="#"><b>[[#{plantilla.accesorios}]]</b></a>
                             </li>
+
                             <li class="nav-item" >
-                                <a class="nav-link text-black" sec:authorize="hasRole('VENDEDOR')" th:href="@{/servicios/listado}"><b>[[#{plantilla.servicios}]]</b></a>
+                                <a class="nav-link text-black" th:href="@{/servicios/listado}"><b>[[#{plantilla.servicios}]]</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-black" sec:authorize="hasRole('VENDEDOR')" th:href="@{/sucursales/listado}"><b>[[#{plantilla.sucursales}]]</b></a>
+                                <a class="nav-link text-black" th:href="@{/sucursales/listado}"><b>[[#{plantilla.sucursales}]]</b></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-black" sec:authorize="hasRole('VENDEDOR')" th:href="@{/conozcanos/listado}"><b>[[#{plantilla.conozcanos}]]</b></a>
+                                <a class="nav-link text-black" th:href="@{/conozcanos/listado}"><b>[[#{plantilla.conozcanos}]]</b></a>
                             </li>
-                            <li class="nav-item dropdown" sec:authorize="hasRole('VENDEDOR')">
+                            <li class="nav-item dropdown"  sec:authorize="hasRole('VENDEDOR')">
                                 <a class="nav-link dropdown-toggle" 
                                    data-bs-toggle="dropdown" 
                                    href="#" 
@@ -67,10 +69,20 @@
                                    aria-expanded="false">
                                     <b class="text-black">[[#{plantilla.administracion}]]</b>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-dark" sec:authorize="hasRole('VENDEDOR')">
+                                <ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" th:href="@{/accesorios/inventarioAccesorios}">[[#{plantilla.inventarioAccesorios}]]</a></li>
                                     <li><a class="dropdown-item" th:href="@{/servicios/inventarioServicios}">[[#{plantilla.inventarioServicios}]]</a></li>
                                 </ul>
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   data-bs-toggle="dropdown"
+                                   href="#" role="button" 
+                                   aria-expanded="false"><b class="text-black">[[#{plantilla.idioma}]]</b></a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item"  th:href="@{/(lang=es)}">ES</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
+                                </ul>
+                            </li>
                             </li>
                         </ul>
                     </div>
@@ -89,7 +101,7 @@
 
                     <ul class="navbar-nav text-black" 
                         sec:authorize='isAuthenticated()'> 
-                        <li class="nav-item px-2 text-white">
+                        <li class="nav-item px-2 text-dark">
                             <img th:src="@{${session.rutaImagen}}"
                                  alt="img"
                                  height="40"
@@ -109,7 +121,7 @@
 
 
                     </ul>
-                    <div id="resultsBlock" class="nav-item">
+                    <div id="resultsBlock" class="nav-item"  >
                         <form action="/carrito/listado" class="fixed-cart-button-form">
                             <button type="submit" class="btn btn-dark fixed-cart-button">
                                 <i class="fas fa-cart-plus"></i>
@@ -122,42 +134,46 @@
         </header>
 
 
-        <section th:fragment="section" class="mt-5 pt-md-2 text-center">
+        <section th:fragment="section" class="mt-1 pt-md-2 text-center">
+            <div class="container">
+               <h3 class="text-center mb-5 p-3" style="border-radius: 15px; background-color: #c89993; color: #000000; display: inline-block;" th:text="#{index.titulo}"></h3>
+
+            </div>
 
             <div class="container">
-    <div id="carouselExampleIndicators" class="carousel slide mx-auto" style="width: 1200px;"> <!-- Limita el ancho del carrusel -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="/accesorios/listado">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F1.png?alt=media&token=61fdfb09-e663-42e3-bc3b-7a17549f20e9" class="d-block h-100 w-100" alt="...">
-                </a>
+                <div id="carouselExampleIndicators" class="carousel slide mx-auto" style="width: 1200px;"> <!-- Limita el ancho del carrusel -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="/accesorios/listado">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F1.png?alt=media&token=61fdfb09-e663-42e3-bc3b-7a17549f20e9" class="d-block h-100 w-100" alt="...">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/accesorios/listado">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F2.png?alt=media&token=2d92e123-766b-4686-9819-7c26cd0ae071" class="d-block h-100 w-100" alt="...">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="/accesorios/listado">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F3.png?alt=media&token=628d5def-519d-4c0f-8835-2ec29863d47f" class="d-block h-100 w-100" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-black" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
-            <div class="carousel-item">
-                <a href="/accesorios/listado">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F2.png?alt=media&token=2d92e123-766b-4686-9819-7c26cd0ae071" class="d-block h-100 w-100" alt="...">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="/accesorios/listado">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/enigmasalon-4beba.appspot.com/o/Salon%2F3.png?alt=media&token=628d5def-519d-4c0f-8835-2ec29863d47f" class="d-block h-100 w-100" alt="...">
-                </a>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bg-black" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon bg-black" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
 
         </section>
 
