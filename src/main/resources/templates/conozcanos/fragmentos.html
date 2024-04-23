@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+        <title>EnigmaSalon</title>
     </head>
     <body>
         <section th:fragment="card" id="conozcanos" class="d-flex justify-content-center flex-wrap mt-5">
@@ -13,8 +13,8 @@
                     <img th:src="${c.rutaImagen}" class="card-img-top" alt="..."/>
                     <div class="card-body text-center">
                         <h5 class="card-title mb-3" th:text="${c.descripcion}"></h5>
-                        <a th:href="@{'/conozcanos/informacion'}" class="btn btn-primary" th:if="${c.idConozcanos == 1}">Click aquí</a>
-                        <a th:href="@{'/conozcanos/contactenos'}" class="btn btn-primary" th:if="${c.idConozcanos == 2}">Click aquí</a>
+                        <a th:href="@{'/conozcanos/informacion'}" class="btn btn-primary" th:if="${c.idConozcanos == 1}" th:text="#{click}"></a>
+                        <a th:href="@{'/conozcanos/contactenos'}" class="btn btn-primary" th:if="${c.idConozcanos == 2}" th:text="#{click}"></a>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h2>Nosotros</h2>
-                    <p>Somos un salón de belleza especializado en la venta de accesorios y productos de belleza de alta calidad. En TechShop, nos dedicamos a ofrecer a nuestros clientes una experiencia única de belleza.</p>
+                    <p>Somos un salón de belleza especializado en la venta de accesorios y productos de belleza de alta calidad. En EnigmaSalon, nos dedicamos a ofrecer a nuestros clientes una experiencia única de belleza.</p>
                     <p>Nuestro compromiso es brindar servicios de primera calidad, con profesionales expertos en belleza y asesoramiento personalizado para satisfacer todas las necesidades de nuestros clientes.</p>
                     <h2>Servicios</h2>
                     <ul>
@@ -45,7 +45,7 @@
                         <li>Zapote</li>
                         <li>Guadalupe</li>
                     </ul>
-                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b>Ver todas las sucursales</b></a>
+                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b th:text="#{sucursales}"></b></a>
                 </div>
             </div>
         </section>
@@ -69,7 +69,7 @@
                         <li class="list-inline-item"><a href="#" title="Facebook"><i class="fab fa-facebook-square"></i></a></li>
                         <li class="list-inline-item"><a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a></li>
                     </ul>
-                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b>Ver todas las sucursales</b></a>
+                    <a th:href="@{/sucursales/listado}" class="btn mt-3 text-dark" style="background-color: #c89993;"><b th:text="#{sucursales}"></b></a>
 
                 </div>
             </div>

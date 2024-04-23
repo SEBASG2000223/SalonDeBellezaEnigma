@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+        <title>EnigmaSalon</title>
     </head>
     <body>
 
@@ -24,9 +24,10 @@
                                 <p class="card-text">Precio: [[${p.precio}]] | Existencias: [[${p.existencias}]]</p>
                                 <form>
                                     <input type="hidden" name="idAccesorios" th:value="${p.idAccesorios}" />
-                                    <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button">         
-                                        Añadir al carrito
+                                    <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button" th:text="#{añadir.carrito}">
+                                        
                                     </button>
+
                                 </form>
                             </div>
                         </div>
@@ -80,14 +81,16 @@
                                             <td>   [[${item.cantidad}]]</td>
                                             <td>[[${item.precio*item.cantidad}]]</td>
                                             <td  sec:authorize="hasRole('USER')">
-                                                <a th:href="@{/carrito/eliminar/}+${item.idAccesorios}"
-                                                   class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> Eliminar
+                                                <a th:href="@{/carrito/eliminar/}+${item.idAccesorios}" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> 
+                                                    <span th:text="#{accion.eliminar}"></span>
                                                 </a>
-                                                <a th:href="@{/carrito/modificar/}+${item.idAccesorios}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> Modificar
+
+                                                <a th:href="@{/carrito/modificar/}+${item.idAccesorios}" class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> 
+                                                    <span th:text="#{accion.modificar}"></span>
                                                 </a>
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -120,13 +123,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="card mb-3">
-                            <div class="card-header">[[#{carrito.datos}]]</div>
+                            <div class="card-header">[[#{accion.modificar}]]</div>
                             <div class="card-body">
                                 <h5 class="card-title">[[${item.descripcion}]]</h5>
                                 <h6 class="card-subtitle mb-2 text-muted text-end">
                                     [[${item.precio}+' ('+${item.existencias}+')']]
                                 </h6>
-                                <p class="card-text">[[${item.descripcion}]]</p>
+
                             </div>
                         </div>
                     </div>

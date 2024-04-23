@@ -34,7 +34,8 @@ public class ServiciosController {
         return "/servicios/listado";
 
     }
-     @Autowired
+
+    @Autowired
     private FirebaseStorageService firebaseStorageService;
 
     @PostMapping("/guardar")
@@ -54,6 +55,7 @@ public class ServiciosController {
         return "redirect:/servicios/inventarioServicios";
 
     }
+
     @GetMapping("/inventarioServicios")
     public String inventarioServicios(Model model) {
         var listado = serviciosService.getServicios(false);
@@ -61,30 +63,28 @@ public class ServiciosController {
         model.addAttribute("totalServicios", listado.size());
         return "servicios/inventarioServicios";
     }
-    
+
     @GetMapping("/modificar/{idServicios}")
-    public String modifica(Servicios servicios, Model model){
-        
+    public String modifica(Servicios servicios, Model model) {
+
         servicios = serviciosService.getServicios(servicios);
         model.addAttribute("servicios", servicios);
         return "/servicios/modifica";
-        
-        
+
     }
-        @GetMapping("/eliminar/{idServicios}")
-    public String elimina(Servicios servicios){
-        
+
+    @GetMapping("/eliminar/{idServicios}")
+    public String elimina(Servicios servicios) {
+
         serviciosService.delete(servicios);
-           return "redirect:/servicios/inventarioServicios";
-    }   
-    
-       
-      @PostMapping("/agendarServicios")
+        return "redirect:/servicios/inventarioServicios";
+    }
+
+    @PostMapping("/agendarServicios")
     public String agendarServicios(Model model, Usuario usuario, Servicios servicios)
             throws MessagingException {
         model = serviciosService.agendarServicios(model, usuario, servicios);
         return "/servicios/salida";
     }
-            
 
 }

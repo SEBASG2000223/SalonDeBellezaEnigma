@@ -18,5 +18,5 @@ public class Conozcanos implements Serializable {
 
     private String descripcion;
     private String rutaImagen;
-    
+
 }

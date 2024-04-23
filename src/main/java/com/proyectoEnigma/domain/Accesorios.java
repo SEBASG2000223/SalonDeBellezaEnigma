@@ -1,4 +1,3 @@
-
 package com.proyectoEnigma.domain;
 
 import jakarta.persistence.*;
@@ -7,10 +6,11 @@ import lombok.Data;
 
 @Data //esta vara es para que cree set y get automaticamnetey metodos como el toString
 @Entity
-@Table(name="Accesorios")
-public class Accesorios implements Serializable{
-    private static final long serialVersionUID=1L;
-    
+@Table(name = "Accesorios")
+public class Accesorios implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_accesorios")
@@ -21,5 +21,5 @@ public class Accesorios implements Serializable{
     private int existencias;
     private String rutaImagen;
     private boolean activo;
-    
+
 }

@@ -7,58 +7,60 @@
     </head>
     <body>
 
-<section th:fragment="card" id="sucursales" class="pt-md-5">
-    <!-- Sección para las sucursales -->
-    <div class="container">
-        <!-- Filas y columnas -->
-        <div class="row justify-content-center">
-            <!-- Sucursales -->
-            <div class="col-md-4" th:each="s : ${sucursales}">
-                <div class="card">
-                    <!-- Imagen de la sucursal -->
-                    <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="...">
-                    <div class="card-body text-center">
-                        <!-- Nombre de la sucursal -->
-                        <h5 th:text="${s.nombreSucursal}" class="card-title"></h5>
-                        <!-- Dirección de la sucursal -->
-                        <p th:text="${s.descripcion}" class="card-title mb-3"></p>
-                        <!-- Botón para más información -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idSucursales}">
-                            Más información
-                        </button>
-                    </div>
-                    </div>
-                   
-              
-                
-                <!-- Modal asociado a cada sucursal -->
-                <div class="modal" th:id="'modal' + ${s.idSucursales}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <!-- Título del modal -->
-                                <h5 class="modal-title" th:text="${s.nombreSucursal}"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <section th:fragment="card" id="sucursales" class="pt-md-5">
+            <!-- Sección para las sucursales -->
+            <div class="container">
+                <!-- Filas y columnas -->
+                <div class="row justify-content-center">
+                    <!-- Sucursales -->
+                    <div class="col-md-4" th:each="s : ${sucursales}">
+                        <div class="card">
+                            <!-- Imagen de la sucursal -->
+                            <img th:src="${s.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 50%;" alt="..."/>
+                            <div class="card-body text-center">
+                                <!-- Nombre de la sucursal -->
+                                <h5 th:text="${s.nombreSucursal}" class="card-title"></h5>
+                                <!-- Dirección de la sucursal -->
+                                <p th:text="${s.descripcion}" class="card-title mb-3"></p>
+                                <!-- Botón para más información -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${s.idSucursales}" th:text="#{informacion}">
+                                   
+                                </button>
+
                             </div>
-                            <div class="modal-body">
-                                <!-- Contenido del modal (más información sobre la sucursal) -->
-                                <p th:text="${s.descripcion}"></p>
-                                
-                                <div th:utext="${s.ubicacion}"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <!-- Otros botones o funcionalidades, si es necesario -->
+                        </div>
+
+
+
+
+                        <!-- Modal asociado a cada sucursal -->
+                        <div class="modal" th:id="'modal' + ${s.idSucursales}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <!-- Título del modal -->
+                                        <h5 class="modal-title" th:text="${s.nombreSucursal}"></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Contenido del modal (más información sobre la sucursal) -->
+                                        <p th:text="${s.descripcion}"></p>
+
+                                        <div th:utext="${s.ubicacion}"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{cerrar}"></button>
+                                        <!-- Otros botones o funcionalidades, si es necesario -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- Agregar Bootstrap JS al final del body para funcionalidad -->
-<!-- Agrega aquí el enlace al archivo JS de Bootstrap -->
+        </section>
+        <!-- Agregar Bootstrap JS al final del body para funcionalidad -->
+        <!-- Agrega aquí el enlace al archivo JS de Bootstrap -->
 
-</body>
+    </body>
 </html>

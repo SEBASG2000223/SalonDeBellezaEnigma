@@ -2,85 +2,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head th:replace="~{layout/plantilla :: head}">
-    <title>TechShop</title>
-</head>
-<body>
-    <section th:fragment="card" id="servicios" class="pt-md-5">
-    <!-- Sección para las tarjetas -->
-    <div class="container">
-        <!-- Filas y columnas -->
-        <div class="row justify-content-center">
-            <!-- Tarjetas -->
-            <div class="col-md-3 mb-4" th:each="a : ${servicios}">
-                <div class="card">
-                    <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3" th:text="${a.nombreServicio}"></h5>
-                        <p class="card-text" th:text="${a.descripcion}"></p>
-                        <!-- Botón para abrir el modal -->
-                        <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idServicios}">
-                            Agendar
-                        </button>
-                    </div>
-                </div>
-                <!-- Modal asociado a cada tarjeta -->
-                <div class="modal" th:id="'modal' + ${a.idServicios}" >
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" th:text=${a.nombreServicio}></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>EnigmaSalon</title>
+    </head>
+    <body>
+        <section th:fragment="card" id="servicios" class="pt-md-5">
+            <!-- Sección para las tarjetas -->
+            <div class="container">
+                <!-- Filas y columnas -->
+                <div class="row justify-content-center">
+                    <!-- Tarjetas -->
+                    <div class="col-md-3 mb-4" th:each="a : ${servicios}">
+                        <div class="card">
+                            <img th:src="${a.rutaImagen}" class="card-img-top" style="object-fit: cover; height: 250px;" alt="..."/>
+                            <div class="card-body text-center">
+                                <h5 class="card-title mb-3" th:text="${a.nombreServicio}"></h5>
+                                <p class="card-text" th:text="${a.descripcion}"></p>
+                                <!-- Botón para abrir el modal -->
+                                <button type="button" class="btn btn-primary btn-block" data-bs-toggle="modal" th:attr="data-bs-target='#modal' + ${a.idServicios}">
+                                    <span th:text="#{agendar}"></span>
+                                </button>
+
                             </div>
-                            <div class="modal-body">
-                                <!-- Contenido del modal -->
-                                <p class="justify-content-center">Escribe el correo donde quieres recibir la confirmacion.</p>
-                                <!-- Agregar formulario para recordar al usuario -->
-                                <form method="POST" th:action="@{/servicios/agendarServicios}" th:object="${usuario}" class="was-validated">
-                                                                                  
-                                    <div class="mb-3">
-                                        <label for="email">[[#{usuario.correo}]]</label>
-                                        <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
+                        </div>
+
+                        <!-- Modal asociado a cada tarjeta -->
+                        <div class="modal" th:id="'modal' + ${a.idServicios}" >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" th:text=${a.nombreServicio}></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="text-end">
-                                        <button type="submit" class="btn text-dark" style="background-color: #c89993;">
-                                            <i class="fas fa-address-card"></i> Agendar
-                                        </button>
+                                    <div class="modal-body">
+                                        <!-- Contenido del modal -->
+                                        <p class="justify-content-center" th:text="#{escribe.correo}"></p>
+
+                                        <!-- Agregar formulario para recordar al usuario -->
+                                        <form method="POST" th:action="@{/servicios/agendarServicios}" th:object="${usuario}" class="was-validated">
+
+                                            <div class="mb-3">
+                                                <label for="email">[[#{usuario.correo}]]</label>
+                                                <input type="email" class="form-control" name="correo" th:field="*{correo}"/>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="submit" class="btn text-dark" style="background-color: #c89993;">
+                                                    <i class="fas fa-address-card"></i> 
+                                                    <span th:text="#{agendar}"></span>
+                                                </button>
+
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <!-- Este botón es solo para cerrar el modal, no para enviar el formulario -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <!-- Este botón es solo para cerrar el modal, no para enviar el formulario -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-    
-    
-<section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <button 
-                    sec:authorize="hasRole('ADMIN')"
-                    type="button" 
-                    class="btn btn-primary btn-block" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#agregarServicio">
-                    <i class="fas fa-plus"></i> Agregar Servicio
-                </button>
+
+
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button 
+                            sec:authorize="hasRole('ADMIN')"
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarServicio">
+                            <i class="fas fa-plus"></i> <span th:text="#{servicio.agregar}"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-    
-    <section th:fragment="unaSalida">
+        </section>
+
+        <section th:fragment="unaSalida">
             <div class="row py-2 justify-content-center">
                 <div class="col-md-3 mt-4">
                     <div class="card">
@@ -96,7 +101,7 @@
 
         </section>
 
-<section th:fragment="agregarServicio">
+        <section th:fragment="agregarServicio">
             <div id="agregarServicio" 
                  class="modal fade" 
                  tabindex="-1" 
@@ -104,7 +109,7 @@
                  aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
+                        <div class="modal-header text-dark" style="background-color: #c89993;">
                             <h5 class="modal-title">[[#{servicio.agregar}]]</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
@@ -130,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"></button>
                             </div>
                         </form>
                     </div>
@@ -138,55 +143,56 @@
             </div>
         </section>
 
-<section th:fragment="listadoServicios" id="servicios">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Listado de Servicios</h4>
-                    </div>
-                    <div th:if="${servicios != null and not #lists.isEmpty(servicios)}">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Activo</th>
-                                    <th sec:authorize="hasRole('ADMIN')">Acciones</th>
-                                   </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="servicios, contador : ${servicios}">
-                                    <td>[[${contador.count}]]</td>
-                                    <td>[[${servicios.nombreServicio}]]</td>
-                                    <td>[[${servicios.descripcion}]]</td>
-                                    <td th:text="${servicios.activo} ? 'Activo' : 'Inactivo'"></td>
-                                    <td sec:authorize="hasRole('ADMIN')">
-                                        <a th:href="@{/servicios/eliminar/}+${servicios.idServicios}"
-                                           class="btn btn-danger">
-                                            <i class="fas fa-trash"></i> Eliminar</a>
-                                        
-                                        <a th:href="@{/servicios/modificar/}+${servicios.idServicios}"
-                                           class="btn btn-success mt-1">
-                                            <i class="fas fa-pencil"></i> Modificar</a></td></tr>
-                           
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="text-center p-2" th:if="${servicios == null or #lists.isEmpty(servicios)}">
-                        <span>No hay servicios disponibles</span>
+        <section th:fragment="listadoServicios" id="servicios">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 th:text="#{listado.accesorios}"></h4>
+                            </div>
+                            <div th:if="${servicios != null and not #lists.isEmpty(servicios)}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th><span th:text="#{servicios.nombreServicio}"></span></th>
+                                            <th><span th:text="#{servicios.descripcion}"></span></th>
+                                            <th><span th:text="#{servicios.activo}"></span></th>
+                                            <th sec:authorize="hasRole('ADMIN')"><span th:text="#{acciones}"></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="servicios, contador : ${servicios}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${servicios.nombreServicio}]]</td>
+                                            <td>[[${servicios.descripcion}]]</td>
+                                            <td th:text="${servicios.activo} ? 'Activo' : 'Inactivo'"></td>
+                                            <td sec:authorize="hasRole('ADMIN')">
+                                                <a th:href="@{/servicios/eliminar/}+${servicios.idServicios}" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> 
+                                                    <span th:text="#{accion.eliminar}"></span>
+                                                </a>
+
+                                                <a th:href="@{/servicios/modificar/}+${servicios.idServicios}" class="btn btn-success mt-1">
+                                                    <i class="fas fa-pencil"></i> 
+                                                    <span th:text="#{accion.modificar}"></span>
+                                                </a>
+                                            </td></tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+            </div>
+        </section>
 
- 
+
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-         <section th:fragment="editarServicio">
+        <section th:fragment="editarServicio">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -208,7 +214,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
-                                                    <label for="nombreServicio">[[#{servicios.descripcion}]]</label>
+                                                    <label for="nombreServicio">[[#{servicios.nombreServicio}]]</label>
                                                     <input type="text" class="form-control" 
                                                            name="nombreServicio" th:field="*{nombreServicio}"
                                                            required="true">
@@ -266,5 +272,5 @@
                 </div>
             </div>
         </section>
-</body>
+    </body>
 </html>

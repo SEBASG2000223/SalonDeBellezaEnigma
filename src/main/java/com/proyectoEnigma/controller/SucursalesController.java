@@ -31,6 +31,7 @@ public class SucursalesController {
         return "/sucursales/listado";
 
     }
+
     @Autowired
     private FirebaseStorageService firebaseStorageService;
 
@@ -42,7 +43,6 @@ public class SucursalesController {
 
             String rutaImangen
                     = firebaseStorageService.cargaImagen(imagenFile, "sucursales", sucursales.getIdSucursales());
-           
 
             sucursales.setRutaImagen(rutaImangen);
 
@@ -52,24 +52,21 @@ public class SucursalesController {
         return "redirect:/sucursales/listado";
 
     }
+
     @GetMapping("/modificar/{idSucursales}")
-    public String modifica(Sucursales sucursales, Model model){
-        
+    public String modifica(Sucursales sucursales, Model model) {
+
         sucursales = sucursalesService.getSucursales(sucursales);
         model.addAttribute("sucursales", sucursales);
         return "/sucursales/modifica";
-        
-        
+
     }
-        @GetMapping("/eliminar/{idSucursales}")
-    public String elimina(Sucursales sucursales){
-        
+
+    @GetMapping("/eliminar/{idSucursales}")
+    public String elimina(Sucursales sucursales) {
+
         sucursalesService.delete(sucursales);
-           return "redirect:/sucursales/listado";
-    }   
-    
-       
-      
-            
+        return "redirect:/sucursales/listado";
+    }
 
 }

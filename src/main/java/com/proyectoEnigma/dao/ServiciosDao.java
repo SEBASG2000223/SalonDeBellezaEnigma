@@ -1,14 +1,8 @@
-
 package com.proyectoEnigma.dao;
 
-import com.proyectoEnigma.domain.Accesorios;
 import com.proyectoEnigma.domain.Servicios;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-
-public interface ServiciosDao extends JpaRepository<Servicios, Long>{
-    
+public interface ServiciosDao extends JpaRepository<Servicios, Long> {
 
 }

@@ -3,10 +3,10 @@ package com.proyectoEnigma.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Item extends Accesorios {
+
     private int cantidad;
 
     public Item(Accesorios p) {

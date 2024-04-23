@@ -3,10 +3,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>TechShop</title>
+        <title>EnigmaSalon</title>
     </head>
     <body>
-       
+
         <!-- 2 Presenta el listado de accesorios de manera elegante -->
         <section th:fragment="listadoAccesorios" id="accesorios">
             <div class="container">
@@ -24,9 +24,10 @@
                                 <p class="card-text">Precio: [[${p.precio}]] | Existencias: [[${p.existencias}]]</p>
                                 <form>
                                     <input type="hidden" name="idAccesorios" th:value="${p.idAccesorios}" />
-                                    <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button">         
-                                        Añadir al carrito
+                                    <button class="btn btn-primary btn-block" id="addCar" name="addCar" onclick="addCard(this.form)" type="button" th:text="#{añadir.carrito}">
+                                       
                                     </button>
+
                                 </form>
                             </div>
                         </div>
@@ -34,27 +35,27 @@
                 </div>
             </div>
         </section>
-        
+
 
         <section th:fragment="filtros2">
-    <div class="row p-4 mt-4 justify-content-center">
-        <div class="col-md-4">
-            <form th:action="@{/pruebas/query2}" method="POST">
-                <div class="input-group">
-                    <input type="text" 
-                           class="form-control" 
-                           th:value="${buscarAccesorios}" 
-                           th:name="buscarAccesorios" 
-                           placeholder= "Busca tu accesorio"
-                           required="true"/>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
+            <div class="row p-4 mt-4 justify-content-center">
+                <div class="col-md-4">
+                    <form th:action="@{/pruebas/query2}" method="POST">
+                        <div class="input-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   th:value="${buscarAccesorios}" 
+                                   th:name="buscarAccesorios" 
+                                   placeholder= "Busca tu accesorio"
+                                   required="true"/>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
-</section>
+            </div>
+        </section>
 
     </body>
 </html>
